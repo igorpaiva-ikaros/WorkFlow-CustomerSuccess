@@ -1,17 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
 @import 'tailwindcss';
 
+/* Identidade Ikaros — extraída da proposta institucional.
+   Fundo noite · papel creme · laranja Ikaros · azul-marinho da logo. */
 @theme {
-  --font-display: 'Bricolage Grotesque', 'Instrument Sans', sans-serif;
-  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --color-canvas: #f6f5f1;
-  --color-ink: #0b1740;
-  --color-ink-soft: #4a5578;
-  --color-line: #e3e5ee;
-  --color-navy: #0b1740;
-  --color-blue: #2d5be3;
-  --color-purple: #6a46dc;
+  --font-display: 'Instrument Serif', 'Times New Roman', serif;
+  --font-sans: 'Schibsted Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --color-canvas: #050912;
+  --color-surface: #0a1323;
+  --color-surface-2: #0d182b;
+  --color-ink: #f1eee6;
+  --color-ink-soft: #a3adbf;
+  --color-line: #1c2740;
+  --color-orange: #ff7a4d;
+  --color-navy: #12294f;
+  --color-cream: #f1eee6;
 }
 
 html {
@@ -28,7 +32,20 @@ body {
 }
 
 ::selection {
-  background: #d9d0fb;
+  background: rgba(255, 122, 77, 0.35);
+}
+
+/* Numeral vazado laranja (01, 02…) como na proposta */
+.num-outline {
+  font-family: var(--font-display);
+  color: transparent;
+  -webkit-text-stroke: 1.2px var(--color-orange);
+  line-height: 0.9;
+}
+/* Palavra em destaque: serifa itálica laranja */
+.accent-it {
+  font-style: italic;
+  color: var(--color-orange);
 }
 
 @keyframes sweep {
@@ -68,5 +85,5 @@ body {
   scrollbar-color: transparent transparent;
 }
 .thin-scroll:hover {
-  scrollbar-color: #c9cde0 transparent;
+  scrollbar-color: #2a3754 transparent;
 }
