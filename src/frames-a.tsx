@@ -72,7 +72,7 @@ export function Frame01() {
     <Frame
       id="f01"
       n="01"
-      title="Como funciona o *Customer Success* do Ikaros ERP"
+      title="Como funciona o Customer Success do Ikaros ERP"
       subtitle="Do pedido do cliente à resolução, melhoria ou encaminhamento técnico."
     >
       <div className="grid gap-12 lg:grid-cols-[1.15fr_1fr]">
@@ -81,12 +81,12 @@ export function Frame01() {
           <div className="relative">
             {macro.map((m, i) => (
               <div key={i}>
-                <div className="flex items-center gap-4 rounded-2xl border border-line bg-surface-2 px-5 py-3.5 transition hover:border-orange/50">
+                <div className="flex items-center gap-4 rounded-2xl border border-line bg-white px-5 py-3.5 transition hover:border-[#b8c3f5] hover:shadow-sm">
                   <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full font-mono text-xs font-semibold ${tones[m.tone].solid}`}>
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <div className="flex-1">
-                    <div className="font-display font-normal text-[21px] text-ink">{m.t}</div>
+                    <div className="font-display text-[17px] font-semibold uppercase tracking-wide text-ink">{m.t}</div>
                     <div className="text-[13px] text-ink-soft">{m.s}</div>
                   </div>
                 </div>
@@ -100,7 +100,7 @@ export function Frame01() {
           <Eyebrow className="mb-5">Legenda · tipos de atuação</Eyebrow>
           <div className="space-y-3">
             {actions.map(({ n, d, I, tone }) => (
-              <div key={n} className="flex items-center gap-4 rounded-2xl border border-line bg-[#0d182b] p-4">
+              <div key={n} className="flex items-center gap-4 rounded-2xl border border-line bg-[#fbfbfd] p-4">
                 <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl ${tones[tone].bg} ${tones[tone].text}`}>
                   <I size={20} />
                 </span>
@@ -138,10 +138,10 @@ const notionFields: [string, string][] = [
 
 function NotionCard() {
   return (
-    <div className="rounded-2xl border border-line bg-surface-2 p-5 shadow-[0_18px_40px_-28px_rgba(0,0,0,0.8)]">
+    <div className="rounded-2xl border border-line bg-white p-5 shadow-[0_18px_40px_-28px_rgba(11,23,64,0.4)]">
       <div className="mb-4 flex items-center justify-between border-b border-line pb-3">
-        <div className="flex items-center gap-2 font-display font-normal text-[20px]">
-          <span className="grid h-6 w-6 place-items-center rounded-md bg-cream text-[11px] font-bold text-canvas">N</span>
+        <div className="flex items-center gap-2 font-display text-[16px] font-semibold">
+          <span className="grid h-6 w-6 place-items-center rounded-md bg-ink text-[11px] font-bold text-white">N</span>
           Demanda
         </div>
         <Eyebrow>Banco · Demandas CS</Eyebrow>
@@ -205,14 +205,14 @@ function StepHead({ n, title, tone = 'blue' }: { n: number; title: string; tone?
   return (
     <div className="mb-5 flex items-center gap-3">
       <span className={`grid h-8 w-8 place-items-center rounded-full font-mono text-xs font-semibold ${tones[tone].solid}`}>{n}</span>
-      <h3 className="font-display font-normal text-[27px] text-ink">{title}</h3>
+      <h3 className="font-display text-[22px] font-semibold uppercase tracking-wide text-ink">{title}</h3>
     </div>
   )
 }
 
 export function Frame02() {
   return (
-    <Frame id="f02" n="02" title="Fluxo completo da *demanda*" subtitle="Cada etapa, na ordem exata em que acontece. Leia de cima para baixo.">
+    <Frame id="f02" n="02" title="Fluxo completo da demanda" subtitle="Cada etapa, na ordem exata em que acontece. Leia de cima para baixo.">
       {/* 1-3 */}
       <div className="grid gap-6 lg:grid-cols-[1fr_auto_1.1fr_auto_1.1fr] lg:items-start">
         <div>
@@ -225,7 +225,7 @@ export function Frame02() {
             ].map(([I, l]) => {
               const Ic = I as typeof Mail
               return (
-                <div key={l as string} className="flex items-center gap-3 rounded-xl bg-[#5f8cdc1a] px-3.5 py-3 text-[14px] font-medium text-[#8db0eb]">
+                <div key={l as string} className="flex items-center gap-3 rounded-xl bg-[#eaf0ff] px-3.5 py-3 text-[14px] font-medium text-[#2347c5]">
                   <Ic size={18} /> {l as string}
                 </div>
               )
@@ -257,7 +257,7 @@ export function Frame02() {
       <div>
         <StepHead n={4} title="Triagem" tone="purple" />
         <Decision question="Qual é a natureza da demanda?" hint="Toda demanda cai em exatamente uma destas seis ramificações." />
-        <div className="mx-auto h-5 w-px bg-[#2a3754]" />
+        <div className="mx-auto h-5 w-px bg-[#d5d9ea]" />
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
           {(
             [
@@ -271,7 +271,7 @@ export function Frame02() {
           ).map(([l, I, t]) => (
             <div key={l} className={`rounded-xl border p-4 ${tones[t].bg} ${tones[t].border}`}>
               <I size={20} className={tones[t].text} />
-              <div className={`mt-3 text-[14px] font-semibold ${'text-ink'}`}>{l}</div>
+              <div className={`mt-3 text-[14px] font-semibold ${t === 'navy' ? 'text-white' : 'text-ink'}`}>{l}</div>
             </div>
           ))}
         </div>
@@ -283,7 +283,7 @@ export function Frame02() {
       <div>
         <StepHead n={5} title="Classificação técnica" tone="purple" />
         <Decision question="É uma pequena melhoria?" tone="purple" />
-        <div className="mx-auto h-5 w-px bg-[#2a3754]" />
+        <div className="mx-auto h-5 w-px bg-[#d5d9ea]" />
         <div className="grid gap-5 md:grid-cols-2">
           <Panel tone="green">
             <div className="mb-4 flex h-[44px] w-[300px] flex-row items-center justify-between gap-[5px]">
@@ -292,9 +292,9 @@ export function Frame02() {
             </div>
             <Bullets I={Check} tone="green" items={['Ajuste de tela', 'Alteração de texto', 'Configuração', 'Regra simples', 'Sem alteração de banco', 'Sem integração', 'Sem Edge Functions', 'Sem regra de negócio complexa', 'Sem alteração de segurança']} />
           </Panel>
-          <Panel tone="slate" className="!bg-[#f1eee614] !border-[#f1eee63d]">
+          <Panel tone="slate" className="!bg-[#eceefa] !border-[#cfd4ee]">
             <div className="mb-4 flex h-[44px] w-[300px] flex-row items-center justify-center gap-[5px]">
-              <span className="inline-flex rounded-full bg-cream px-2.5 py-1 text-[12px] font-semibold text-canvas">Complexa · NÃO</span>
+              <span className="inline-flex rounded-full bg-ink px-2.5 py-1 text-[12px] font-semibold text-white">Complexa · NÃO</span>
               <span className="text-[12px] text-ink-soft">Basta um item para ser complexa</span>
             </div>
             <Bullets I={X} tone="navy" items={['Alteração de banco', 'Integração', 'Edge Functions', 'Regras de negócio', 'Segurança', 'Qualquer alteração de maior complexidade']} />
@@ -341,11 +341,11 @@ export function Frame02() {
               <Down />
               <Decision question="Problema resolvido?" tone="blue" />
               <div className="mt-5 grid grid-cols-2 gap-3">
-                <div className="rounded-xl border border-[#34be8c47] bg-[#34be8c1a] p-4">
+                <div className="rounded-xl border border-[#b7e6d1] bg-[#e4f6ee] p-4">
                   <Badge tone="green">SIM</Badge>
                   <div className="mt-2 text-[14px] font-semibold">Registrar e encerrar</div>
                 </div>
-                <div className="rounded-xl border border-[#f0b42947] bg-[#f0b4291a] p-4">
+                <div className="rounded-xl border border-[#f5df9a] bg-[#fff4d6] p-4">
                   <Badge tone="amber">NÃO</Badge>
                   <div className="mt-2 text-[14px] font-semibold">Transformar em demanda e encaminhar para triagem</div>
                 </div>
@@ -367,9 +367,9 @@ export function Frame02() {
                 { title: 'Registrar comissão', tone: 'green' },
               ]}
             />
-            <div className="mt-5 rounded-2xl border border-orange/30 bg-gradient-to-br from-[#12294f] to-[#0a1323] p-5 text-ink">
-              <Eyebrow className="!text-[#ff9a75]">Comissão</Eyebrow>
-              <div className="mt-2 font-display font-normal text-[27px] leading-tight">
+            <div className="mt-5 rounded-2xl bg-gradient-to-br from-[#0b1740] to-[#3a2a9c] p-5 text-white">
+              <Eyebrow className="!text-[#b9c3ff]">Comissão</Eyebrow>
+              <div className="mt-2 font-display text-[22px] font-semibold leading-tight">
                 COMISSÃO = 100% DE UMA MENSALIDADE DO NOVO PLANO
               </div>
             </div>
@@ -393,47 +393,47 @@ const slas: { t: string; v: string; I: typeof Clock; tone: Tone; note: string }[
 
 export function Frame03() {
   return (
-    <Frame id="f03" n="03" title="Níveis de *serviço*" subtitle="Cada demanda carrega um relógio. O SLA começa no registro e só para quando ela é encerrada.">
+    <Frame id="f03" n="03" title="Níveis de serviço" subtitle="Cada demanda carrega um relógio. O SLA começa no registro e só para quando ela é encerrada.">
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {slas.map(({ t, v, I, tone, note }) => (
-          <div key={t} className="rounded-2xl border border-line bg-surface-2 p-6 transition hover:border-orange/50">
+          <div key={t} className="rounded-2xl border border-line bg-white p-6 transition hover:border-[#b8c3f5] hover:shadow-md">
             <span className={`grid h-11 w-11 place-items-center rounded-xl ${tones[tone].bg} ${tones[tone].text}`}>
               <I size={20} />
             </span>
             <Eyebrow className="mt-6">{t}</Eyebrow>
-            <div className="mt-2 font-display font-normal text-[29px] leading-tight text-ink">{v}</div>
+            <div className="mt-2 font-display text-[24px] font-semibold leading-tight text-ink">{v}</div>
             <div className="mt-3 text-[13px] text-ink-soft">{note}</div>
           </div>
         ))}
       </div>
 
-      <div className="mt-8 grid items-center gap-8 rounded-2xl border border-orange/25 bg-navy p-8 text-ink md:grid-cols-[auto_1fr]">
+      <div className="mt-8 grid items-center gap-8 rounded-2xl bg-ink p-8 text-white md:grid-cols-[auto_1fr]">
         <div className="flex items-center gap-5">
-          <svg width="76" height="76" viewBox="0 0 24 24" fill="none" stroke="#ff9a75" strokeWidth="1.2">
+          <svg width="76" height="76" viewBox="0 0 24 24" fill="none" stroke="#b9c3ff" strokeWidth="1.2">
             <circle cx="12" cy="12" r="10" />
             <path d="M12 3v2M21 12h-2M12 21v-2M3 12h2" strokeLinecap="round" />
-            <line className="clock-hand" x1="12" y1="12" x2="12" y2="5.5" stroke="#f1eee6" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="12" cy="12" r="1.2" fill="#f1eee6" stroke="none" />
+            <line className="clock-hand" x1="12" y1="12" x2="12" y2="5.5" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
+            <circle cx="12" cy="12" r="1.2" fill="#fff" stroke="none" />
           </svg>
           <div>
-            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[#ff9a75]">
-              <span className="live-dot h-2 w-2 rounded-full bg-[#f0b429]" /> Tempo correndo
+            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[#b9c3ff]">
+              <span className="live-dot h-2 w-2 rounded-full bg-[#f5b800]" /> Tempo correndo
             </div>
-            <div className="mt-1 font-display font-normal text-[27px]">SLA em acompanhamento</div>
+            <div className="mt-1 font-display text-[22px] font-semibold">SLA em acompanhamento</div>
           </div>
         </div>
         <div>
-          <div className="mb-2 flex items-center justify-between font-mono text-[11px] text-[#ff9a75]">
+          <div className="mb-2 flex items-center justify-between font-mono text-[11px] text-[#b9c3ff]">
             <span>CS-0412 · Primeira resposta</span>
             <span>limite: 4h úteis</span>
           </div>
           <div className="h-3 overflow-hidden rounded-full bg-white/10">
-            <div className="sla-bar h-full rounded-full bg-gradient-to-r from-[#2fb985] via-[#f0b429] to-[#f0606e]" />
+            <div className="sla-bar h-full rounded-full bg-gradient-to-r from-[#12a073] via-[#e0a100] to-[#d6382e]" />
           </div>
-          <div className="mt-3 flex flex-wrap gap-4 text-[12.5px] text-[#d5dae4]">
-            <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#2fb985]" /> No prazo</span>
-            <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#f0b429]" /> Atenção</span>
-            <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#f0606e]" /> Atrasada</span>
+          <div className="mt-3 flex flex-wrap gap-4 text-[12.5px] text-[#c9d1ff]">
+            <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#12a073]" /> No prazo</span>
+            <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#e0a100]" /> Atenção</span>
+            <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#d6382e]" /> Atrasada</span>
           </div>
         </div>
       </div>
@@ -456,19 +456,19 @@ const cols: { n: string; tone: Tone; d: string; card: string }[] = [
 
 export function Frame04() {
   return (
-    <Frame id="f04" n="04" title="Status da *demanda*" subtitle="O caminho normal passa por oito colunas, da esquerda para a direita. Três estados especiais ficam fora dele.">
+    <Frame id="f04" n="04" title="Status da demanda" subtitle="O caminho normal passa por oito colunas, da esquerda para a direita. Três estados especiais ficam fora dele.">
       <div className="thin-scroll -mx-2 overflow-x-auto px-2 pb-4">
         <div className="flex min-w-max items-stretch gap-0">
           {cols.map((c, i) => (
             <div key={c.n} className="flex items-stretch">
-              <div className="w-[196px] rounded-2xl border border-line bg-[#0d182b] p-3">
+              <div className="w-[196px] rounded-2xl border border-line bg-[#fbfbfd] p-3">
                 <div className="mb-3 flex items-center justify-between">
                   <span className="font-mono text-[11px] text-ink-soft">{String(i + 1).padStart(2, '0')}</span>
                   <span className={`h-2 w-2 rounded-full ${tones[c.tone].dot}`} />
                 </div>
                 <Status tone={c.tone}>{c.n}</Status>
                 <p className="mt-3 min-h-[34px] text-[12.5px] leading-snug text-ink-soft">{c.d}</p>
-                <div className="mt-3 rounded-xl border border-line bg-surface p-3 shadow-sm">
+                <div className="mt-3 rounded-xl border border-line bg-white p-3 shadow-sm">
                   <div className="text-[12.5px] font-semibold text-ink">{c.card}</div>
                   <div className="mt-2 flex items-center justify-between">
                     <Owner name="Igor" />
@@ -484,15 +484,15 @@ export function Frame04() {
       <div className="mt-10">
         <Eyebrow className="mb-4">Estados especiais · podem ocorrer em qualquer etapa</Eyebrow>
         <div className="grid gap-4 md:grid-cols-3">
-          <div className="rounded-2xl border border-[#f0606e47] bg-[#f0606e1a] p-5">
+          <div className="rounded-2xl border border-[#f6c4bf] bg-[#fde9e7] p-5">
             <Blocked />
             <p className="mt-3 text-[13.5px] leading-relaxed text-ink-soft">Algo externo impede o avanço. Registrar o motivo e avisar Pedro.</p>
           </div>
-          <div className="rounded-2xl border border-[#ff7a4d4d] bg-[#ff7a4d1a] p-5">
+          <div className="rounded-2xl border border-[#d9cffa] bg-[#f0ebff] p-5">
             <Badge tone="purple">Encaminhada para desenvolvimento</Badge>
             <p className="mt-3 text-[13.5px] leading-relaxed text-ink-soft">Demanda complexa. O CS segue acompanhando e informando o cliente.</p>
           </div>
-          <div className="rounded-2xl border border-[#a3adbf3d] bg-[#a3adbf14] p-5">
+          <div className="rounded-2xl border border-[#dde0ec] bg-[#eef0f6] p-5">
             <Badge tone="slate">Cancelada</Badge>
             <p className="mt-3 text-[13.5px] leading-relaxed text-ink-soft">Cliente desistiu ou demanda duplicada. Sempre registrar o motivo.</p>
           </div>
