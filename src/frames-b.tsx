@@ -67,21 +67,21 @@ const roles: { n: string; sub: string; tone: Tone; I: typeof Users; items: strin
 
 export function Frame05() {
   return (
-    <Frame id="f05" n="05" title="Responsabilidades" subtitle="Quem faz o quê. Se você não sabe de quem é uma tarefa, volte a esta página.">
+    <Frame id="f05" n="05" title="*Responsabilidades*" subtitle="Quem faz o quê. Se você não sabe de quem é uma tarefa, volte a esta página.">
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
         {roles.map((r) => (
-          <div key={r.n} className={`flex flex-col rounded-2xl border bg-white p-5 ${r.n.startsWith('Customer') ? 'border-[#9fb4f5] ring-4 ring-[#eaf0ff]' : 'border-line'}`}>
+          <div key={r.n} className={`flex flex-col rounded-2xl border bg-surface-2 p-5 ${r.n.startsWith('Customer') ? 'border-orange/60 ring-4 ring-orange/10' : 'border-line'}`}>
             <span className={`grid h-11 w-11 place-items-center rounded-xl ${tones[r.tone].solid}`}>
               <r.I size={20} />
             </span>
-            <h3 className="mt-4 font-display text-[18px] font-semibold leading-tight">{r.n}</h3>
+            <h3 className="mt-4 font-display font-normal text-[22px] leading-tight">{r.n}</h3>
             <Eyebrow className="mt-1.5 !text-[10px]">{r.sub}</Eyebrow>
             <ul className="mt-5 space-y-2.5 border-t border-line pt-4">
               {r.items.map((it) => (
                 <li key={it} className="flex items-start gap-2 text-[13.5px] leading-snug text-ink">
                   <Check
                     size={14}
-                    className={`mt-0.5 shrink-0 ${r.tone === 'navy' ? 'text-purple' : tones[r.tone].text}`}
+                    className={`mt-0.5 shrink-0 ${r.tone === 'navy' ? 'text-orange' : tones[r.tone].text}`}
                     strokeWidth={3}
                   />
                   {it}
@@ -112,19 +112,19 @@ const rules: [string, string, typeof Lock, Tone?][] = [
 
 export function Frame06() {
   return (
-    <Frame id="f06" n="06" title="Regras de ouro" subtitle="Dez regras de segurança. Não são sugestões: valem para todo mundo, todos os dias.">
+    <Frame id="f06" n="06" title="Regras de *ouro*" subtitle="Dez regras de segurança. Não são sugestões: valem para todo mundo, todos os dias.">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {rules.map(([t, d, I, tone], i) => {
           const tt: Tone = tone ?? 'blue'
           return (
-            <div key={t} className="relative flex flex-col rounded-2xl border border-line bg-white p-5 transition hover:border-[#b8c3f5] hover:shadow-md">
+            <div key={t} className="relative flex flex-col rounded-2xl border border-line bg-surface-2 p-5 transition hover:border-orange/50">
               <div className="flex items-center justify-between">
                 <span className={`grid h-10 w-10 place-items-center rounded-xl ${tones[tt].bg} ${tones[tt].text}`}>
                   <I size={19} />
                 </span>
-                <span className="font-mono text-[12px] text-[#aab0cc]">{String(i + 1).padStart(2, '0')}</span>
+                <span className="font-mono text-[12px] text-[#5d6a85]">{String(i + 1).padStart(2, '0')}</span>
               </div>
-              <h3 className="mt-5 font-display text-[16.5px] font-semibold leading-snug">{t}</h3>
+              <h3 className="mt-5 font-display font-normal text-[20px] leading-snug">{t}</h3>
               <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">{d}</p>
             </div>
           )
@@ -143,14 +143,14 @@ export function Frame06() {
 
 export function Frame07() {
   return (
-    <Frame id="f07" n="07" title="Exemplo real" subtitle="Um caso fictício, do primeiro WhatsApp ao “concluído”.">
+    <Frame id="f07" n="07" title="Exemplo *real*" subtitle="Um caso fictício, do primeiro WhatsApp ao “concluído”.">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr]">
         <div>
           <Eyebrow className="mb-4">Mensagem recebida · Grupo oficial</Eyebrow>
-          <div className="rounded-2xl bg-[#e9f1ec] p-5">
-            <div className="max-w-[92%] rounded-2xl rounded-tl-sm bg-white p-4 shadow-sm">
+          <div className="rounded-2xl bg-[#0b211d] p-5">
+            <div className="max-w-[92%] rounded-2xl rounded-tl-sm bg-surface-2 p-4 shadow-sm">
               <div className="flex items-center justify-between text-[12px]">
-                <span className="font-semibold text-[#0d6b4b]">Marina · Distribuidora Alvorada</span>
+                <span className="font-semibold text-[#5fd0a0]">Marina · Distribuidora Alvorada</span>
                 <span className="text-ink-soft">09:14</span>
               </div>
               <p className="mt-2 text-[15px] leading-relaxed">
@@ -162,9 +162,9 @@ export function Frame07() {
             </div>
           </div>
 
-          <div className="mt-8 rounded-2xl border-2 border-[#b7e6d1] bg-[#e4f6ee] p-6">
+          <div className="mt-8 rounded-2xl border-2 border-[#34be8c47] bg-[#34be8c1a] p-6">
             <Badge tone="green">Por que é pequena?</Badge>
-            <p className="mt-4 font-display text-[22px] font-semibold leading-snug">
+            <p className="mt-4 font-display font-normal text-[27px] leading-snug">
               Não altera banco, integração, segurança ou regra de negócio.
             </p>
             <p className="mt-3 text-[14px] leading-relaxed text-ink-soft">
@@ -225,16 +225,16 @@ const focus: [string, Tone][] = [
 
 export function Frame08() {
   return (
-    <Frame id="f08" n="08" title="Dashboard do processo" subtitle="Nove indicadores para saber, em um olhar, como está a carteira. Valores ilustrativos.">
+    <Frame id="f08" n="08" title="Dashboard do *processo*" subtitle="Nove indicadores para saber, em um olhar, como está a carteira. Valores ilustrativos.">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {kpis.map((k) => (
-          <div key={k.l} className="rounded-2xl border border-line bg-white p-5">
+          <div key={k.l} className="rounded-2xl border border-line bg-surface-2 p-5">
             <div className="flex items-start justify-between">
               <Eyebrow className="!text-[10.5px]">{k.l}</Eyebrow>
               <span className={`h-2 w-2 rounded-full ${tones[k.tone].dot}`} />
             </div>
             <div className="mt-3 flex items-end justify-between">
-              <div className="font-display text-[48px] font-semibold leading-none">{k.v}</div>
+              <div className="font-display font-normal text-[59px] leading-none">{k.v}</div>
               <div className="flex h-10 items-end gap-1">
                 {k.bars.map((b, i) => (
                   <span key={i} className={`w-1.5 rounded-sm ${tones[k.tone].dot} ${i === k.bars.length - 1 ? '' : 'opacity-30'}`} style={{ height: `${Math.max(b, 0.6) * 10}%` }} />
@@ -246,16 +246,16 @@ export function Frame08() {
         ))}
       </div>
 
-      <div className="mt-12 rounded-2xl bg-ink p-8 text-white md:p-10">
-        <Eyebrow className="!text-[#b9c3ff]">Foco do Customer Success</Eyebrow>
+      <div className="mt-12 rounded-2xl border border-orange/25 bg-navy p-8 text-ink md:p-10">
+        <Eyebrow className="!text-[#ff9a75]">Foco do Customer Success</Eyebrow>
         <div className="mt-6 flex flex-col items-stretch gap-3 md:flex-row md:items-center">
           {focus.map(([f, t], i) => (
             <div key={f} className="flex flex-1 items-center gap-3 md:contents">
               <div className="flex-1 rounded-xl border border-white/15 bg-white/[0.06] px-4 py-4">
-                <div className="font-mono text-[11px] text-[#9aa7ee]">{String(i + 1).padStart(2, '0')}</div>
-                <div className="mt-1 font-display text-[20px] font-semibold">{f}</div>
+                <div className="font-mono text-[11px] text-[#ff9a75]">{String(i + 1).padStart(2, '0')}</div>
+                <div className="mt-1 font-display font-normal text-[24px]">{f}</div>
               </div>
-              {i < focus.length - 1 && <Right className="!text-[#6e7bc2] max-md:hidden" />}
+              {i < focus.length - 1 && <Right className="!text-[#ff7a4d99] max-md:hidden" />}
             </div>
           ))}
         </div>
@@ -282,15 +282,15 @@ const arch: { t: string; I: typeof Zap; tone: Tone; human?: string }[] = [
 
 export function Frame09() {
   return (
-    <Frame id="f09" n="09" title="Arquitetura futura" subtitle="A visão de automação: menos trabalho manual, os mesmos pontos de controle.">
+    <Frame id="f09" n="09" title="Arquitetura *futura*" subtitle="A visão de automação: menos trabalho manual, os mesmos pontos de controle.">
       <div className="grid gap-x-2 gap-y-4 md:grid-cols-[repeat(11,minmax(0,1fr))]">
         {arch.map((a, i) => (
           <div key={a.t} className="flex items-center md:contents">
             <div
-              className={`relative flex-1 rounded-2xl border bg-white p-4 text-center ${a.human ? 'border-[#e0a100] ring-4 ring-[#fff4d6]' : 'border-line'}`}
+              className={`relative flex-1 rounded-2xl border bg-surface-2 p-4 text-center ${a.human ? 'border-[#f0b429] ring-4 ring-[#f0b4291a]' : 'border-line'}`}
             >
               {a.human && (
-                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e0a100] px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider text-[#3b2800]">
+                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#f0b429] px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider text-[#2a1c00]">
                   {a.human}
                 </span>
               )}
@@ -304,7 +304,7 @@ export function Frame09() {
       </div>
 
       <div className="mt-10 hidden md:block">
-        <div className="relative h-1.5 rounded-full bg-gradient-to-r from-[#2d5be3] via-[#6a46dc] to-[#12a073] opacity-80" />
+        <div className="relative h-1.5 rounded-full bg-gradient-to-r from-[#5f8cdc] via-[#ff7a4d] to-[#2fb985] opacity-80" />
         <div className="mt-2 flex justify-between font-mono text-[10px] uppercase tracking-widest text-ink-soft">
           <span>Entrada</span>
           <span>Automação e IA</span>
@@ -313,10 +313,10 @@ export function Frame09() {
         </div>
       </div>
 
-      <div className="mt-10 rounded-2xl border-2 border-ink bg-white p-7">
+      <div className="mt-10 rounded-2xl border-2 border-orange/60 bg-surface-2 p-7">
         <div className="flex items-start gap-4">
-          <ShieldCheck className="mt-1 shrink-0 text-purple" size={26} />
-          <p className="font-display text-[24px] font-semibold leading-snug">
+          <ShieldCheck className="mt-1 shrink-0 text-orange" size={26} />
+          <p className="font-display font-normal text-[29px] leading-snug">
             Automação não substitui os pontos de decisão, validação e segurança.
           </p>
         </div>
@@ -329,7 +329,7 @@ export function Frame09() {
 
 export function Appendix() {
   return (
-    <Frame id="apx" n="A" title="Biblioteca de componentes e cores" subtitle="Os blocos reutilizáveis usados em todos os frames. Ao montar o Notion, mantenha as mesmas cores e significados.">
+    <Frame id="apx" n="A" title="Biblioteca de *componentes* e cores" subtitle="Os blocos reutilizáveis usados em todos os frames. Ao montar o Notion, mantenha as mesmas cores e significados.">
       <div className="grid gap-5 lg:grid-cols-3">
         <Panel>
           <Eyebrow className="mb-4">Legenda de cores</Eyebrow>

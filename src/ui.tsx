@@ -13,17 +13,29 @@ import {
 
 export type Tone = 'blue' | 'purple' | 'green' | 'amber' | 'red' | 'navy' | 'slate'
 
+// Mapeamento Ikaros: 'purple' = laranja da marca (destaque principal) · 'navy' = creme (peso máximo)
 export const tones: Record<Tone, { bg: string; text: string; border: string; dot: string; solid: string }> = {
-  blue: { bg: 'bg-[#eaf0ff]', text: 'text-[#2347c5]', border: 'border-[#c9d8ff]', dot: 'bg-[#2d5be3]', solid: 'bg-[#2d5be3] text-white' },
-  purple: { bg: 'bg-[#f0ebff]', text: 'text-[#5334c0]', border: 'border-[#d9cffa]', dot: 'bg-[#6a46dc]', solid: 'bg-[#6a46dc] text-white' },
-  green: { bg: 'bg-[#e4f6ee]', text: 'text-[#0d6b4b]', border: 'border-[#b7e6d1]', dot: 'bg-[#12a073]', solid: 'bg-[#12805c] text-white' },
-  amber: { bg: 'bg-[#fff4d6]', text: 'text-[#8a5a00]', border: 'border-[#f5df9a]', dot: 'bg-[#e0a100]', solid: 'bg-[#e0a100] text-[#3b2800]' },
-  red: { bg: 'bg-[#fde9e7]', text: 'text-[#b02a22]', border: 'border-[#f6c4bf]', dot: 'bg-[#d6382e]', solid: 'bg-[#c2362f] text-white' },
-  navy: { bg: 'bg-[#0b1740]', text: 'text-white', border: 'border-[#0b1740]', dot: 'bg-white', solid: 'bg-[#0b1740] text-white' },
-  slate: { bg: 'bg-[#eef0f6]', text: 'text-[#4a5578]', border: 'border-[#dde0ec]', dot: 'bg-[#8a93b2]', solid: 'bg-[#4a5578] text-white' },
+  blue: { bg: 'bg-[#5f8cdc1a]', text: 'text-[#8db0eb]', border: 'border-[#5f8cdc47]', dot: 'bg-[#5f8cdc]', solid: 'bg-[#3e6bc4] text-white' },
+  purple: { bg: 'bg-[#ff7a4d1a]', text: 'text-[#ff9a75]', border: 'border-[#ff7a4d4d]', dot: 'bg-[#ff7a4d]', solid: 'bg-[#ff7a4d] text-[#1a0c05]' },
+  green: { bg: 'bg-[#34be8c1a]', text: 'text-[#5fd0a0]', border: 'border-[#34be8c47]', dot: 'bg-[#2fb985]', solid: 'bg-[#1f9e6e] text-white' },
+  amber: { bg: 'bg-[#f0b4291a]', text: 'text-[#f0c060]', border: 'border-[#f0b42947]', dot: 'bg-[#f0b429]', solid: 'bg-[#f0b429] text-[#2a1c00]' },
+  red: { bg: 'bg-[#f0606e1a]', text: 'text-[#ff8a94]', border: 'border-[#f0606e47]', dot: 'bg-[#f0606e]', solid: 'bg-[#d94656] text-white' },
+  navy: { bg: 'bg-[#f1eee614]', text: 'text-[#f1eee6]', border: 'border-[#f1eee63d]', dot: 'bg-[#f1eee6]', solid: 'bg-[#f1eee6] text-[#0a1323]' },
+  slate: { bg: 'bg-[#a3adbf14]', text: 'text-[#a3adbf]', border: 'border-[#a3adbf3d]', dot: 'bg-[#7d8799]', solid: 'bg-[#5b6678] text-white' },
 }
 
 /* ---------- Structure ---------- */
+
+/** Aceita *palavra* no título para destacar em serifa itálica laranja. */
+export function Title({ children }: { children: string }) {
+  return (
+    <>
+      {children.split(/(\*[^*]+\*)/g).map((p, i) =>
+        p.startsWith('*') ? <em key={i} className="accent-it pr-[0.06em]">{p.slice(1, -1)}</em> : <span key={i}>{p}</span>,
+      )}
+    </>
+  )
+}
 
 export function Frame({
   id,
@@ -39,15 +51,15 @@ export function Frame({
   children: ReactNode
 }) {
   return (
-    <section id={id} className="mx-auto w-full max-w-[1280px] px-5 py-10 md:px-8">
-      <div className="rounded-[28px] border border-line bg-white px-6 py-10 shadow-[0_1px_0_rgba(11,23,64,0.03),0_24px_60px_-40px_rgba(11,23,64,0.25)] md:px-14 md:py-14">
+    <section id={id} className="mx-auto w-full max-w-[1280px] px-5 py-8 md:px-8">
+      <div className="rounded-[28px] border border-line bg-surface px-6 py-10 shadow-[0_30px_80px_-50px_rgba(0,0,0,0.9)] md:px-14 md:py-14">
         <header className="mb-12 max-w-3xl">
-          <div className="mb-4 flex items-center gap-3 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-purple">
-            <span className="rounded-md bg-[#f0ebff] px-2 py-1">Frame {n}</span>
-            <span className="h-px w-10 bg-[#d9cffa]" />
-          </div>
-          <h2 className="font-display text-[34px] font-semibold leading-[1.08] tracking-tight text-ink md:text-[44px]">{title}</h2>
-          {subtitle && <p className="mt-4 text-lg leading-relaxed text-ink-soft">{subtitle}</p>}
+          <div className="num-outline text-[88px] md:text-[112px]">{n}</div>
+          <h2 className="mt-3 font-display text-[40px] font-normal leading-[1.02] tracking-[-0.01em] text-ink md:text-[58px]">
+            <Title>{title}</Title>
+          </h2>
+          <div className="mt-6 h-px w-full bg-gradient-to-r from-orange via-orange/20 to-transparent" />
+          {subtitle && <p className="mt-6 text-lg leading-relaxed text-ink-soft">{subtitle}</p>}
         </header>
         {children}
       </div>
@@ -57,7 +69,7 @@ export function Frame({
 
 export function Eyebrow({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
-    <div className={`font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-ink-soft ${className}`}>{children}</div>
+    <div className={`font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-ink-soft ${className}`}>{children}</div>
   )
 }
 
@@ -70,7 +82,7 @@ export function Panel({
   tone?: Tone
   className?: string
 }) {
-  const t = tone ? `${tones[tone].bg} ${tones[tone].border}` : 'bg-white border-line'
+  const t = tone ? `${tones[tone].bg} ${tones[tone].border}` : 'bg-surface-2 border-line'
   return <div className={`rounded-2xl border p-6 ${t} ${className}`}>{children}</div>
 }
 
@@ -78,7 +90,7 @@ export function Panel({
 
 export function Down({ className = '', stroke }: { className?: string; stroke?: string }) {
   return (
-    <div className={`flex flex-col items-center py-1 text-[#b9bfd8] ${className}`}>
+    <div className={`flex flex-col items-center py-1 text-[#3a4a68] ${className}`}>
       <span className="h-3 w-px bg-current" />
       <ArrowDown size={16} strokeWidth={1.75} stroke={stroke ?? 'currentColor'} />
     </div>
@@ -87,7 +99,7 @@ export function Down({ className = '', stroke }: { className?: string; stroke?: 
 
 export function Right({ className = '' }: { className?: string }) {
   return (
-    <div className={`flex items-center text-[#b9bfd8] ${className}`}>
+    <div className={`flex items-center text-[#3a4a68] ${className}`}>
       <span className="h-px w-3 bg-current" />
       <ArrowRight size={16} strokeWidth={1.75} />
     </div>
@@ -116,7 +128,7 @@ export function Priority({ level }: { level: 'Crítica' | 'Alta' | 'Média' | 'B
     <span className={`inline-flex items-center gap-2 rounded-md border px-2 py-1 text-[12px] font-semibold ${t.bg} ${t.text} ${t.border}`}>
       <span className="flex items-end gap-[2px]">
         {[1, 2, 3, 4].map((i) => (
-          <span key={i} className={`w-[3px] rounded-sm ${i <= bars ? t.dot : 'bg-black/10'}`} style={{ height: 4 + i * 2 }} />
+          <span key={i} className={`w-[3px] rounded-sm ${i <= bars ? t.dot : 'bg-white/10'}`} style={{ height: 4 + i * 2 }} />
         ))}
       </span>
       {level}
@@ -164,7 +176,7 @@ export function SLAChip({ children, tone = 'blue' }: { children: ReactNode; tone
 
 export function Approved({ children = 'Aprovado' }: { children?: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#12805c] px-3 py-1 text-[12px] font-semibold text-white">
+    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1f9e6e] px-3 py-1 text-[12px] font-semibold text-white">
       <CheckCircle2 size={13} /> {children}
     </span>
   )
@@ -174,7 +186,7 @@ export function Done({ children = 'Concluído' }: { children?: ReactNode }) {
 }
 export function Blocked({ children = 'Bloqueado' }: { children?: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#f6c4bf] bg-[#fde9e7] px-3 py-1 text-[12px] font-semibold text-[#b02a22]">
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#f0606e47] bg-[#f0606e1a] px-3 py-1 text-[12px] font-semibold text-[#ff8a94]">
       <Ban size={13} /> {children}
     </span>
   )
@@ -201,7 +213,7 @@ export function Decision({ question, hint, tone = 'purple' }: { question: string
       <span className={`absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] ${t.solid}`}>
         <GitBranch size={11} /> Decisão
       </span>
-      <div className="font-display text-[19px] font-semibold leading-snug text-ink">{question}</div>
+      <div className="font-display text-[24px] font-normal leading-snug text-ink">{question}</div>
       {hint && <div className="mt-2 text-[13px] text-ink-soft">{hint}</div>}
     </div>
   )
@@ -214,7 +226,7 @@ export type Step = { title: string; sub?: string; tone?: Tone; tag?: ReactNode }
 export function Node({ i, step, last }: { i?: number; step: Step; last?: boolean }) {
   const t = tones[step.tone ?? 'blue']
   return (
-    <div className={`flex items-center gap-3 rounded-xl border bg-white px-4 py-3 ${last ? t.border : 'border-line'} transition hover:border-[#b8c3f5] hover:shadow-sm`}>
+    <div className={`flex items-center gap-3 rounded-xl border bg-surface-2 px-4 py-3 ${last ? t.border : 'border-line'} transition hover:border-orange/50`}>
       {i !== undefined && (
         <span className={`grid h-6 w-6 shrink-0 place-items-center rounded-full font-mono text-[11px] font-semibold ${t.solid}`}>{i}</span>
       )}
@@ -243,11 +255,11 @@ export function Chain({ steps, numbered = true }: { steps: Step[]; numbered?: bo
 export function Lane({ title, tone, tag, children }: { title: string; tone: Tone; tag?: ReactNode; children: ReactNode }) {
   const t = tones[tone]
   return (
-    <div className="rounded-2xl border border-line bg-[#fbfbfd] p-5">
+    <div className="rounded-2xl border border-line bg-surface-2 p-5">
       <div className="mb-5 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
           <span className={`h-5 w-1.5 rounded-full ${t.dot}`} />
-          <h3 className="font-display text-[20px] font-semibold text-ink">{title}</h3>
+          <h3 className="font-display text-[26px] font-normal text-ink">{title}</h3>
         </div>
         {tag}
       </div>
