@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Bricolage Grotesque', 'Instrument Sans', sans-serif;
+  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --color-canvas: #f6f5f1;
+  --color-ink: #0b1740;
+  --color-ink-soft: #4a5578;
+  --color-line: #e3e5ee;
+  --color-navy: #0b1740;
+  --color-blue: #2d5be3;
+  --color-purple: #6a46dc;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #d9d0fb;
+}
+
+@keyframes sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fill {
+  from {
+    width: 8%;
+  }
+  to {
+    width: 92%;
+  }
+}
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.clock-hand {
+  transform-origin: 12px 12px;
+  animation: sweep 6s linear infinite;
+}
+.sla-bar {
+  animation: fill 7s linear infinite;
+}
+.live-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.thin-scroll:hover {
+  scrollbar-color: #c9cde0 transparent;
+}
